@@ -1,21 +1,24 @@
 import logger from 'jet-logger';
 
-import EnvVars from './common/constants/env';
+import { ENV } from './libs/modules/config/env/env';
 import server from './server';
-
-/******************************************************************************
-                                Constants
-******************************************************************************/
+import { connectDB } from './libs/modules/database/sequelize';
 
 const SERVER_START_MESSAGE =
-  'Express server started on port: ' + EnvVars.Port.toString();
+  'Express server started on port: ' + ENV.PORT.toString();
 
-/******************************************************************************
-                                  Run
-******************************************************************************/
+const port = ENV.PORT || 3001
+server.listen(port, (err) => {
+  connectDB()
+    .then(() => {
+      if (err) {
+        logger.err(err.message);
+      } else {
+        logger.info(SERVER_START_MESSAGE);
+      }
+    })
+    .catch((dbErr) => logger.err(dbErr));
 
-// Start the server
-server.listen(EnvVars.Port, (err) => {
   if (!!err) {
     logger.err(err.message);
   } else {

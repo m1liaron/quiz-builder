@@ -12,13 +12,9 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "frontend/**/*.{ts,tsx}": [
-      "eslint --fix --config frontend/.eslintrc.js",
-      "prettier --write"
-    ],
-    "backend/**/*.ts": [
-      "eslint --fix --config backend/.eslintrc.js",
-      "prettier --write"
+    "*.ts": [
+      "prettier --write",
+      "npx eslint --fix"
     ]
   },
   "repository": {
@@ -41,5 +37,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
     "prettier": "^3.8.4"
+  },
+  "dependencies": {
+    "jiti": "^2.7.0"
   }
 }
