@@ -6,11 +6,11 @@ const createUser = async (data: UserCreationAttributes): Promise<User> => {
 };
 
 const getUserById = async (id: string): Promise<User | null> => {
-    return User.findByPk(id);
+    return await User.findByPk(id);
 };
 
 const getUser = async (where: Partial<UserAttributes>): Promise<User | null> => {
-    return User.findOne({ where });
+    return await User.findOne({ where });
 };
 
 export { createUser, getUserById, getUser };

@@ -22,6 +22,26 @@ class HTTPError extends Error {
         this.status = status;
         this.name = ExceptionName.HTTP_ERROR;
     }
+
+    static notFound(message = "Not found") {
+        return new HTTPError({ message, status: StatusCodes.NOT_FOUND });
+    }
+
+    static unauthorized(message = "Unauthorized") {
+        return new HTTPError({ message, status: StatusCodes.UNAUTHORIZED });
+    }
+
+    static forbidden(message = "Forbidden") {
+        return new HTTPError({ message, status: StatusCodes.FORBIDDEN });
+    }
+
+    static badRequest(message = "Bad request") {
+        return new HTTPError({ message, status: StatusCodes.BAD_REQUEST });
+    }
+
+    static conflict(message = "Conflict") {
+        return new HTTPError({ message, status: StatusCodes.CONFLICT });
+    }
 }
 
 export { HTTPError };
