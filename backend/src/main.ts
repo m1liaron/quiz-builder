@@ -3,6 +3,7 @@ import logger from 'jet-logger';
 import { ENV } from './libs/modules/config/env/env';
 import server from './server';
 import { connectDB } from './libs/modules/database/sequelize';
+import { initModels } from './libs/modules/database/associations';
 
 const SERVER_START_MESSAGE =
   'Express server started on port: ' + ENV.PORT.toString();
@@ -19,6 +20,7 @@ server.listen(port, (err) => {
     })
     .catch((dbErr) => logger.err(dbErr));
 
+  initModels();
   if (!!err) {
     logger.err(err.message);
   } else {

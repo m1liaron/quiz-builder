@@ -5,12 +5,11 @@ import { validate } from "@src/middlewares";
 import { Paths } from "@src/libs/constants";
 import { authenticatedRouter } from "@src/libs/modules/route/authenticated-router";
 
-const { post } = authenticatedRouter();
-const quizRouter = Router();
+const { router, post, get, delete: remove } = authenticatedRouter();
 
 post(Paths.Quiz.CREATE_QUIZ, validate(createQuizSchema), quizController.create);
-quizRouter.get(Paths.Quiz.GET_ALL_QUIZZES, quizController.getAll);
-quizRouter.get(Paths.Quiz.GET_BY_ID_QUIZ, validate(quizIdSchema), quizController.getById);
-quizRouter.delete(Paths.Quiz.DELETE_QUIZ, validate(quizIdSchema), quizController.remove);
+get(Paths.Quiz.GET_ALL_QUIZZES, quizController.getAll);
+get(Paths.Quiz.GET_BY_ID_QUIZ, validate(quizIdSchema), quizController.getById);
+remove(Paths.Quiz.DELETE_QUIZ, validate(quizIdSchema), quizController.remove);
 
-export { quizRouter };
+export { router as quizRouter };

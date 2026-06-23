@@ -7,8 +7,8 @@ const Paths = {
   },
   Quiz: {
     _: '/quizzes',
-    CREATE_QUIZ: '/',
-    GET_ALL_QUIZZES: '/',
+    CREATE_QUIZ: '',
+    GET_ALL_QUIZZES: '',
     GET_BY_ID_QUIZ: '/:id',
     DELETE_QUIZ: '/:id'
   },
