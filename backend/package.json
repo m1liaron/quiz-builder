@@ -1,5 +1,5 @@
 {
-  "name": "--with-auth",
+  "name": "backend",
   "version": "0.0.0",
   "scripts": {
     "build": "shx rm -rf dist && npm run lint && tsc --project tsconfig.prod.json && npm run build:copy-static && npm run build:make-db",
