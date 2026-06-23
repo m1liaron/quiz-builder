@@ -10,7 +10,18 @@ const findAllQuizzes = async (): Promise<Quiz[]> => {
 };
 
 const findQuizById = async (id: string): Promise<Quiz | null> => {
-    return Quiz.findByPk(id);
+    return Quiz.findByPk(id, {
+        include: [
+            {
+                association: "questions",
+                include: [
+                    {
+                        association: "options",
+                    },
+                ],
+            },
+        ],
+    });
 };
 
 const deleteQuiz = async (id: string): Promise<void> => {

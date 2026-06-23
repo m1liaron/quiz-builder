@@ -23,7 +23,7 @@ class JWToken {
 
             if (
                 typeof payload['email'] !== 'string' ||
-                typeof payload['id'] !== 'number'
+                typeof payload['id'] !== 'string'
             ) {
                 throw new HTTPError({ message: 'Invalid token payload', status: StatusCodes.UNAUTHORIZED });
             }
