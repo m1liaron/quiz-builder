@@ -1,6 +1,6 @@
 import logger from 'jet-logger';
 
-import { ENV } from './common/config/env/env';
+import { ENV } from './libs/modules/config/env/env';
 import server from './server';
 import { connectDB } from './libs/modules/database/sequelize';
 
@@ -18,7 +18,7 @@ server.listen(port, (err) => {
       }
     })
     .catch((dbErr) => logger.err(dbErr));
-  
+
   if (!!err) {
     logger.err(err.message);
   } else {

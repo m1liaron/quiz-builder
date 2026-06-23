@@ -1,6 +1,6 @@
 import { HTTPError } from "@src/libs/exceptions/exceptions";
 import { StatusCodes } from "http-status-codes";
-import { createUser, getUser, getUserById } from "./user.repo";
+import { createUser, getUser, getUserById } from "./user.repository";
 import type { UserAttributes, UserCreationAttributes } from "./user.model";
 
 const userService = {

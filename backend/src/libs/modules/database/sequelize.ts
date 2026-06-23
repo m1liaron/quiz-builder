@@ -2,7 +2,7 @@ import { config } from "dotenv";
 import { Sequelize } from "sequelize";
 import logger from 'jet-logger';
 
-import { ENV } from "@src/common/config/env/env";
+import { ENV } from "@src/libs/modules/config/env/env";
 config();
 
 let sequelize: Sequelize;
@@ -35,6 +35,7 @@ if (ENV.NODE_ENV === "production") {
 const connectDB = async () => {
     try {
         await sequelize.authenticate();
+        await sequelize.sync();
         logger.info("Connection to PostgreSQL has been established successfully.");
     } catch (error) {
         const message = error instanceof Error ? error.message : String(error);

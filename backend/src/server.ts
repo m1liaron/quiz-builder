@@ -1,12 +1,12 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
-import Paths from '@src/common/constants/Paths';
-import BaseRouter from '@src/routes/apiRouter';
+import { Paths } from "@src/libs/constants";
+import BaseRouter from '@src/libs/modules/route/api-router';
 
-import EnvVars, { NodeEnvs } from './common/constants/env';
 import { errorHandlerMiddleware } from './middlewares';
+import { ENV } from './libs/modules/config/env/env';
 
 const app = express();
 
@@ -15,12 +15,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Show routes called in console during development
-if (EnvVars.NodeEnv === NodeEnvs.DEV) {
+if (ENV.NODE_ENV === "development") {
   app.use(morgan('dev'));
 }
 
 // Security
-if (EnvVars.NodeEnv === NodeEnvs.PRODUCTION) {
+if (ENV.NODE_ENV === "production") {
   app.use(helmet());
 }
 

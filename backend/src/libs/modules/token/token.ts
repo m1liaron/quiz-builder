@@ -1,4 +1,4 @@
-import { ENV } from '@src/common/config/env/env';
+import { ENV } from '@src/libs/modules/config/env/env';
 import { JWToken } from './token.module';
 
 const jwtToken = new JWToken();

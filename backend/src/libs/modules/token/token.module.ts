@@ -3,7 +3,7 @@ import * as jose from 'jose';
 import { SECRET_JWT_KEY } from './index';
 import { JwtTokenPayload } from '@src/libs/types/types';
 import { HTTPError } from '@src/libs/exceptions/exceptions';
-import { ENV } from '@src/common/config/env/env';
+import { ENV } from '@src/libs/modules/config/env/env';
 import { StatusCodes } from 'http-status-codes';
 
 class JWToken {
