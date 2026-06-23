@@ -1,10 +1,9 @@
 import * as jose from 'jose';
 
-
 import { SECRET_JWT_KEY } from './index';
 import { JwtTokenPayload } from '@src/libs/types/types';
 import { HTTPError } from '@src/libs/exceptions/exceptions';
-import { ENV } from '@src/common/config/env';
+import { ENV } from '@src/common/config/env/env';
 import { StatusCodes } from 'http-status-codes';
 
 class JWToken {
@@ -12,7 +11,7 @@ class JWToken {
         return new jose.SignJWT({ email, id })
             .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
             .setIssuedAt()
-            .setExpirationTime(ENV.JWT.JWT_LIFETIME)
+            .setExpirationTime(ENV.JWT_LIFETIME)
             .sign(SECRET_JWT_KEY);
     }
 
@@ -34,7 +33,7 @@ class JWToken {
             throw new HTTPError({
                 message:
                     error instanceof Error ? error.message : 'Invalid or expired JWT',
-                status: StatusCodes.UNAUTHORIZED 
+                status: StatusCodes.UNAUTHORIZED
             });
         }
     }

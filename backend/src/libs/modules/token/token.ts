@@ -1,8 +1,8 @@
-import { ENV } from '@src/common/config/env.js';
+import { ENV } from '@src/common/config/env/env';
 import { JWToken } from './token.module.js';
 
 const jwtToken = new JWToken();
 
-const SECRET_JWT_KEY = new TextEncoder().encode(ENV.JWT.JWT_SECRET);
+const SECRET_JWT_KEY = new TextEncoder().encode(ENV.JWT_SECRET);
 
 export { jwtToken, SECRET_JWT_KEY };
