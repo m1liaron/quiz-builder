@@ -1,1 +1,1 @@
-export { jwtToken, SECRET_JWT_KEY } from './token.js';
+export { jwtToken, SECRET_JWT_KEY } from './token';

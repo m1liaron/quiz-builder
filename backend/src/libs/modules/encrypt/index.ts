@@ -1,1 +1,1 @@
-export { encrypt } from './encrypt.js';
+export { encrypt } from './encrypt';

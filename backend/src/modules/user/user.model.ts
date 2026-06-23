@@ -4,7 +4,7 @@ import { Model, DataTypes } from "sequelize";
 import { v4 as uuidv4 } from "uuid";
 
 import { sequelize } from "@src/libs/modules/database/sequelize";
-import { encrypt } from "@src/libs/modules/encrypt/index.js";
+import { encrypt } from "@src/libs/modules/encrypt/index";
 
 interface UserAttributes {
     id: string;
@@ -81,4 +81,4 @@ User.beforeUpdate(async (userData: User) => {
     }
 });
 
-export { User };
+export { User, type UserCreationAttributes, type UserAttributes };

@@ -1,5 +1,5 @@
 
-import { type ValueOf } from '@src/common/types/structure-utils.js';
+import { type ValueOf } from '@src/common/types/structure-utils';
 import { ExceptionName } from '@src/libs/enums/exception-name.enum';
 import { StatusCodes } from 'http-status-codes';
 

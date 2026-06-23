@@ -2,12 +2,10 @@ import jetPaths from 'jet-paths';
 
 const Paths = {
   _: '/api',
-  Users: {
-    _: '/users',
-    Get: '/all',
-    Add: '/add',
-    Update: '/update',
-    Delete: '/delete/:id',
+  Auth: {
+    _: '/auth',
+    Register: '/register',
+    Login: '/login'
   },
 } as const;
 
