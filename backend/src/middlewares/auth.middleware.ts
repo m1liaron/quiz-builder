@@ -1,12 +1,12 @@
-import { Response, NextFunction } from "express";
+import { RequestHandler } from "express";
 
 import { HTTPError } from "@src/libs/exceptions/exceptions";
 import { jwtToken } from "@src/libs/modules/token";
-import { AuthRequest } from "@src/libs/types/types";
 import { getUserById } from "@src/modules/user/user.repository";
+import { AuthRequest } from "@src/libs/types/auth-request.type";
 
 
-const authMiddleware = async (req: AuthRequest, _res: Response, next: NextFunction) => {
+const authMiddleware: RequestHandler = async (req, _res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -20,7 +20,7 @@ const authMiddleware = async (req: AuthRequest, _res: Response, next: NextFuncti
         if (!user) {
             throw HTTPError.unauthorized("Authentication invalid, user not found");
         }
-        req.user = { id: decoded.id, email: decoded.email };
+        (req as AuthRequest).user = { id: decoded.id, email: decoded.email };
 
         next();
     } catch (error) {

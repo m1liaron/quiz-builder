@@ -1,10 +1,12 @@
 import type { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import * as quizService from "./quiz.service";
+import { AuthRequest } from "@src/libs/types/auth-request.type";
+import { CreateQuizDTO } from "./libs/types/create-quiz-dto.type";
 
-const create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const create = async (req: AuthRequest<CreateQuizDTO>, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const quiz = await quizService.create(req.body as { title: string });
+        const quiz = await quizService.create({ ...req.body, userId: req.user.id});
         res.status(StatusCodes.CREATED).json(quiz);
     } catch (err) {
         next(err);

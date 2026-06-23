@@ -1,10 +1,12 @@
 import { Model, DataTypes, Optional } from "sequelize";
 import { v4 as uuidv4 } from "uuid";
 import { sequelize } from "@src/libs/modules/database/sequelize";
+import { User } from "../user/user.model";
 
 interface QuizAttributes {
     id: string;
     title: string;
+    userId: string;
 }
 
 type QuizCreationAttributes = Optional<QuizAttributes, "id">;
@@ -12,6 +14,7 @@ type QuizCreationAttributes = Optional<QuizAttributes, "id">;
 class Quiz extends Model<QuizAttributes, QuizCreationAttributes> implements QuizAttributes {
     public id!: string;
     public title!: string;
+    public userId!: string;
 }
 
 Quiz.init(
@@ -28,6 +31,14 @@ Quiz.init(
                 len: [3, 100],
             },
         },
+        userId: {
+            type: DataTypes.UUID,
+            allowNull: false,
+            references: {
+                model: User,
+                key: 'id'
+            }
+        }
     },
     {
         sequelize,

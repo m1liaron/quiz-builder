@@ -1,9 +1,13 @@
 import { type Request } from "express";
 
-interface AuthRequest extends Request {
-    user?: {
+interface AuthRequest<
+    Body = unknown,
+    Params = unknown,
+    Query = unknown
+> extends Request<Params, any, Body, Query> {
+    user: {
         id: string;
-        email: string;
+        email: string
     };
 }
 

@@ -1,9 +1,12 @@
 import { z } from "zod";
+import { questionSchema } from "../question/question.schema";
 
 const createQuizSchema = z.object({
     body: z.object({
-        title: z.string().min(3).max(100)
-    }),
+        title: z.string().min(3).max(100),
+        
+        questions: z.array(questionSchema).min(1)
+    })
 });
 
 const quizIdSchema = z.object({
